@@ -282,26 +282,30 @@ const handlePlantsClick = (e) => {
         {!showCart? (
         <div className="product-grid">
             {/* map plant details */}
-            {plantsArray.map((catergory, index)=>{
-                <div key={index}>
-                    <h1><div>{catergory.category}</div></h1>
-                    {catergory.plants.map((plant,pIndex)=>{
-                        <div className="product_card" key={pIndex}>
-                            <img src={plant.image} alt={plant.name} className="product_image" />
-                            <div className="product_title">{plant.name}</div>
-                            <div className="product_text">
-                                <p>{plant.description}</p>
-                            </div>
-                            <div className="product_cost">{plant.cost}</div>
-                            <button className="product_btn" onClick={()=> handleAddToCart(plant)} > Add to Cart </button>
-
-                        </div>
-                    })}
-                </div>
-            })}
-
-
-
+            {
+  plantsArray.map((category, index) => (
+    <div key={index}>
+      <h1>
+        <div>{category.category}</div>
+      </h1>
+      <div className="product-list">
+        {category.plants.map((plant, pIndex) => (
+          <div className="product-card" key={pIndex}>
+            <img className="product-image" src={plant.image} alt={plant.name} />
+            <div className="product-title">{plant.name}</div>
+            <div className="product-text">{plant.description}</div>
+            <div className="product-price">{plant.cost}</div>
+            <button
+              className="product-button"
+              onClick={() => handleAddToCart(plant)}
+            >
+              Add to Cart
+            </button>
+          </div>
+        ))}
+      </div>
+    </div>
+  ))}
         </div>
  ) :  (
     <CartItem onContinueShopping={handleContinueShopping}/>
