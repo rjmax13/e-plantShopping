@@ -37,6 +37,7 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleRemove = (item) => {
+    // console.log("Delete clicked");
     dispatch(removeItem(item));
   };
 
