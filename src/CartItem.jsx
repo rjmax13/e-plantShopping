@@ -11,7 +11,11 @@ const CartItem = ({ onContinueShopping }) => {
   const calculateTotalAmount = (item) => {
     let totalCost = 0;
     cart.forEach((item) => {
-      totalCost += item.quantity * item.cost;
+      totalCost =
+        totalCost + parseFloat(item.cost.substring(1)) * item.quantity;
+      console.log(totalCost);
+
+      // totalCost += item.quantity * item.cost;
     });
     return totalCost;
   };
@@ -25,12 +29,14 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleIncrement = (item) => {
-    dispatch(updateQuantity(item));
+    dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
   };
 
   const handleDecrement = (item) => {
     if (item.quantity > 0) {
-      dispatch(updateQuantity(item));
+      dispatch(
+        updateQuantity({ name: item.name, quantity: item.quantity - 1 })
+      );
     } else {
       dispatch(removeItem(item));
     }
