@@ -17,6 +17,17 @@ const CartItem = ({ onContinueShopping }) => {
     });
     return totalCost;
   };
+  // Calculate total item count for all products in the cart
+  const calculateItems = (item) => {
+    let totalItems = 0;
+    cart.forEach((item) => {
+        totalItems =
+        totalItems + item.quantity;
+      // console.log(totalItems);
+    });
+    return totalItems;
+  };
+
 
   const handleContinueShopping = (e) => {
     onContinueShopping(e);
@@ -28,6 +39,7 @@ const CartItem = ({ onContinueShopping }) => {
 
   const handleIncrement = (item) => {
     dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }));
+    
   };
 
   const handleDecrement = (item) => {
@@ -38,6 +50,7 @@ const CartItem = ({ onContinueShopping }) => {
     } else {
       dispatch(removeItem(item));
     }
+    
   };
 
   const handleRemove = (item) => {
@@ -54,7 +67,22 @@ const CartItem = ({ onContinueShopping }) => {
     <div className="cart-container">
       <h2 style={{ color: "black" }}>
         Total Cart Amount: ${calculateTotalAmount()}
+        
       </h2>
+      <span
+      style={{
+        position: 'absolute',
+        top: '13%',
+        left: '97.5%',
+        transform: 'translate(-50%, -50%)',
+        fontSize: '27',
+        fontWeight: 'bold',
+        color: 'white',
+      }}      
+      >       
+        {calculateItems()}
+        
+        </span>
       <div>
         {cart.map((item) => (
           <div className="cart-item" key={item.name}>

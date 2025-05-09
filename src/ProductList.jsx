@@ -291,10 +291,15 @@ function ProductList() {
     console.log("addedToCart button clicked");
     dispatch(addItem(product));
     setAddedToCart((prevState) => ({
+        
       ...prevState,
       [product.name]: true, // Set the product name as key and value as true to indicate it's added to cart
     }));
+    
   };
+
+
+
 
   return (
     <div>
@@ -324,6 +329,7 @@ function ProductList() {
             {" "}
             <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
               <h1 className="cart">
+                
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 256 256"
